@@ -8,20 +8,24 @@ public class Loja {
 
     private Data dataFundacao;
 
-    public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao) {
+    private Produto[] estoqueProdutos;
+
+    public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, int quantidadeMaxima) {
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = salarioBaseFuncionario;
         this.endereco = endereco;
         this.dataFundacao = dataFundacao;
+        this.estoqueProdutos = new Produto[quantidadeMaxima];
     }
 
-    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao) {
+    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao, int quantidadeMaxima) {
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = -1;
         this.endereco = endereco;
         this.dataFundacao = dataFundacao;
+        this.estoqueProdutos = new Produto[quantidadeMaxima];
     }
 
     public String getNome() {
@@ -42,6 +46,10 @@ public class Loja {
 
     public Data getDataFundacao() {
         return dataFundacao;
+    }
+
+    public Produto[] getEstoqueProdutos() {
+        return estoqueProdutos;
     }
 
     public void setNome(String nome) {
@@ -65,11 +73,16 @@ public class Loja {
 
     }
 
+    public void setEstoqueProdutos(Produto[] estoqueProdutos) {
+        this.estoqueProdutos = estoqueProdutos;
+    }
+
     @Override
     public String toString() {
-        return "Loja [nome=" + nome + ", quantidadeFuncionarios=" + quantidadeFuncionarios + ", salarioBaseFuncionario=" + salarioBaseFuncionario + ", endereco=" + endereco.toString() + ", dataFundacao=" + dataFundacao.toString()
-                +"]";
+        return "Loja [nome=" + nome + ", quantidadeFuncionarios=" + quantidadeFuncionarios + ", salarioBaseFuncionario=" + salarioBaseFuncionario + ", endereco=" + endereco.toString() + ", dataFundacao=" + dataFundacao.toString() + ", estoqueProdutos="
+                + estoqueProdutos +"]";
     }
+
 
     public double gastosComSalario() {
         if (salarioBaseFuncionario == -1) {
@@ -79,8 +92,6 @@ public class Loja {
 
         }
     }
-
-
         public char tamanhoDaLoja () {
             if (quantidadeFuncionarios < 10) {
                 return 'P'; // Retorna 'P' para lojas com menos de 10 funcionários
@@ -90,5 +101,37 @@ public class Loja {
                 return 'G'; // Retorna 'G' para lojas com mais de 30 funcionários
             }
         }
+
+    // Método imprimeProdutos
+    public void imprimeProdutos() {
+        for (Produto produto : estoqueProdutos) {
+            if (produto != null) {
+                System.out.println(produto);
+            }
+        }
     }
+
+    // Método insereProduto
+    public boolean insereProduto(Produto produto) {
+        for (int i = 0; i < estoqueProdutos.length; i++) {
+            if (estoqueProdutos[i] == null) {
+                estoqueProdutos[i] = produto;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Método removeProduto
+    public boolean removeProduto(String nomeProduto) {
+        for (int i = 0; i < estoqueProdutos.length; i++) {
+            if (estoqueProdutos[i] != null && estoqueProdutos[i].getNome().equals(nomeProduto)) {
+                estoqueProdutos[i] = null;
+                return true;
+            }
+        }
+        return false;
+    }
+
+}
 
