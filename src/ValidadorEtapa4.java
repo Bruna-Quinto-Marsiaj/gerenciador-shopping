@@ -286,7 +286,7 @@ public class ValidadorEtapa4 {
 		System.out.println(lojaInformatica.toString() != null ? "[OK] Método Informatica.toString()" : "[NOK] Método Informatica.toString()");
 		
 		
-		/*//// Verificação da classe Shopping
+		//// Verificação da classe Shopping
 		Shopping shopping = new Shopping("Shopping Real", e1, 2);
 		System.out.println("\n[OK] Classe Shopping idetificada");
 
@@ -339,6 +339,6 @@ public class ValidadorEtapa4 {
 		//public Informatica lojaSeguroMaisCaro()
 		Informatica maisCaro = shopping.lojaSeguroMaisCaro();
 		System.out.println(maisCaro.getSeguroEletronicos() == 800 ? "[OK] Método Shopping.lojaSeguroMaisCaro()" : "[NOK] Método Shopping.lojaSeguroMaisCaro");
-*/
+
 	}
 }
